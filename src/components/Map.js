@@ -38,7 +38,7 @@ export const Map = () => {
     const [lineStrings, setLineStrings] = useState([]);
 
     useEffect(() => {
-        fetch('/yokohama_city_geojson.json')
+        fetch(`${process.env.PUBLIC_URL}/yokohama_city_geojson.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -71,7 +71,7 @@ export const Map = () => {
 
             layer.on('click', function () {
                 const fetchPromises = feature.properties.route_ids.map(route_id => {
-                    return fetch('./routes/route_id_' + route_id + '.json')
+                    return fetch(`${process.env.PUBLIC_URL}/routes/route_id_` + route_id + '.json')
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Network response was not ok');
